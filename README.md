@@ -68,6 +68,31 @@ Note: This is not necessary in this case as the project already exists.
   ```
   docker-compose run --rm app sh -c "python manage.py startapp core"
   ```
+- Before you can apply new migrations to the database you have to delete the old user model:
+  - List the docker volume:
+    ```
+    docker volume ls
+    ```
+  - Make sure the image is actually down before deleting it:
+    ```
+    docker-compose down
+    ```
+  - Delete the corresponding docker volume:
+    ```
+    docker volume rm django-test_dev-db-data
+    ```
+- To create a new migrations file run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py makemigrations"
+  ```
+- To apply the migrations to the project run this command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
+  ```
+- To create a new superuser run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py createsuperuser"
+  ```
 
 ## Explanation stuff
 
