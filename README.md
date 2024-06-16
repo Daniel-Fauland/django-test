@@ -45,6 +45,55 @@ Note: This is not necessary in this case as the project already exists.
   docker-compose up
   ```
 
+## Development
+
+- To get syntax highlighting in VSC install the packages locally using conda:
+  - Create a new conda env:
+    ```
+    conda create -n django python=3.11
+    ```
+  - Activate conda env:
+    ```
+    comda actiavte django
+    ```
+  - Install pip dependencies:
+    ```
+    pip install -r requirements.conda.txt
+    ```
+  - Install the `psycopg2` database connector:
+    ```
+    conda install psycopg2
+    ```
+- To add a new "app" in django run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py startapp core"
+  ```
+- Before you can apply new migrations to the database you have to delete the old user model:
+  - List the docker volume:
+    ```
+    docker volume ls
+    ```
+  - Make sure the image is actually down before deleting it:
+    ```
+    docker-compose down
+    ```
+  - Delete the corresponding docker volume:
+    ```
+    docker volume rm django-test_dev-db-data
+    ```
+- To create a new migrations file run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py makemigrations"
+  ```
+- To apply the migrations to the project run this command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"
+  ```
+- To create a new superuser run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py createsuperuser"
+  ```
+
 ## Explanation stuff
 
 ### Postgres connector

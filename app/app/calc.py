@@ -2,7 +2,8 @@
 Calculater Functions
 """
 
-def add(x: int|float , y: int|float) -> int|float:
+
+def add(x: int | float, y: int | float) -> int | float:
     """Add x and y and return result
 
     Args:
@@ -15,7 +16,7 @@ def add(x: int|float , y: int|float) -> int|float:
     return x + y
 
 
-def substract(x: int|float, y: int|float) -> int|float:
+def substract(x: int | float, y: int | float) -> int | float:
     """Substract x from y and return result
 
     Args:
