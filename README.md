@@ -45,6 +45,30 @@ Note: This is not necessary in this case as the project already exists.
   docker-compose up
   ```
 
+## Development
+
+- To get syntax highlighting in VSC install the packages locally using conda:
+  - Create a new conda env:
+    ```
+    conda create -n django python=3.11
+    ```
+  - Activate conda env:
+    ```
+    comda actiavte django
+    ```
+  - Install pip dependencies:
+    ```
+    pip install -r requirements.conda.txt
+    ```
+  - Install the `psycopg2` database connector:
+    ```
+    conda install psycopg2
+    ```
+- To add a new "app" in django run the following command:
+  ```
+  docker-compose run --rm app sh -c "python manage.py startapp core"
+  ```
+
 ## Explanation stuff
 
 ### Postgres connector
