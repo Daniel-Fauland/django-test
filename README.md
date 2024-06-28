@@ -81,7 +81,7 @@ Note: This is not necessary in this case as the project already exists.
     ```
     docker volume rm django-test_dev-db-data
     ```
-- To create a new migrations file run the following command:
+- To create a new migrations file run the following command (This needs to be done after adding a new model for example):
   ```
   docker-compose run --rm app sh -c "python manage.py makemigrations"
   ```
